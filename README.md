@@ -30,7 +30,6 @@ This project is using mongodb with moogose. If you want to run this project on y
 ```
 mongoose.connect('mongodb+srv://<username>:<password>@[...]/test?retryWrites=true&w=majority',{useUnifiedTopology: true, useNewUrlParser: true});
 ```
-Finally don't forget to install packages from packages.json  
 
 `npm start` or `nodemon server` for development
 
