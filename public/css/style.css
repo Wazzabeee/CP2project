@@ -135,14 +135,28 @@
   text-align: center;
   font-family: "caveatbold", sans-serif;
   font-weight: bold;
-  font-size : 25px;
+  font-size : 35px;
   text-decoration: underline rgb(0,123,255);
 }
+
+.options {
+  table-layout: auto;
+  width: 20%;
+}
+
+.btn {
+  width: 100%;
+}
+
+.button {
+  font-size: 30px;
+}
+
 .options tr {
   border: 2px solid white;
   text-align: left;
   font-family: "caveatregular", sans-serif;
-  font-size: 20px;
+  font-size: 30px;
   color: white;
   height: auto;
   width: auto;
@@ -168,6 +182,7 @@
   .options {
     margin-left:auto; 
     margin-right:auto;
+    width: 40%;
   }
   .endgameDiv {
     width: 40%;
