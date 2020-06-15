@@ -108,44 +108,48 @@ function minimax(req, newBoard, player) {
     //filter all newBoard elem that are still number AKA empty cells
     var availableSpots = newBoard.filter(elem => typeof elem == 'number' );
 
-        if(checkWin(newBoard, req.huPlayer, req.winningCombos)) {
+        //check for terminal states
+        if(checkWin(newBoard, req.huPlayer, req.winningCombos)) {//human's won
             return {score: -10};
-        } else if(checkWin(newBoard, req.aiPlayer, req.winningCombos)) {
+        } else if(checkWin(newBoard, req.aiPlayer, req.winningCombos)) { //AI's won
             return {score: 10};
-        } else if(availableSpots.length == 0) {
+        } else if(availableSpots.length == 0) { //tie
             return {score: 0};
         }
 
-		var moves = [];
-		for(var i = 0; i < availableSpots.length; i++) {
+        var moves = []; //collect the score of each available spots to evaluate them later
+		for(var i = 0; i < availableSpots.length; i++) { //we loop through available spots while collecting each move's index and score
 			var move = {};
-			move.index = newBoard[availableSpots[i]];
-			newBoard[availableSpots[i]] = player;
-	
+			move.index = newBoard[availableSpots[i]]; //collect move's index
+			newBoard[availableSpots[i]] = player; //set the empty spot on the newboard to the current player
+    
+            //then we call the minimax function with the other player
 			if (player == req.aiPlayer) {
 				var result = minimax(req, newBoard, req.huPlayer);
 				move.score = result.score;
 			} else {
 				var result = minimax(req, newBoard, req.aiPlayer);
 				move.score = result.score;
-			}
-	
-			newBoard[availableSpots[i]] = move.index;
-			moves.push(move);
+            }
+            //aat the end of the recursion (when it reaches terminal states)
+
+			newBoard[availableSpots[i]] = move.index; //resets newBoard to what it was before
+			moves.push(move); //we push the move object to the move array to evaluate it later
 		}
 	
-		var bestMove;
+        var bestMove;
+        //we evaluate the best move for the AI in the moves array  i.e : move with highest score for AI / lowest for Human
 		if(player == req.aiPlayer) {
 			var bestScore = -10000;
 			for(var i = 0; i < moves.length; i++) {
-				if (moves[i].score > bestScore) {
+				if (moves[i].score > bestScore) { //keep the highest score | in case different moves have highest score we keep the first one
 					bestScore = moves[i].score;
 					bestMove = i;
 				}
 			}
 		} else {
 			var bestScore = 10000;
-			for(var i = 0; i < moves.length; i++) {
+			for(var i = 0; i < moves.length; i++) { //keep the lowest one for the Human
 				if (moves[i].score < bestScore) {
 					bestScore = moves[i].score;
 					bestMove = i;
