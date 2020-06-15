@@ -5,7 +5,7 @@ var dbFunctions = require('./controllers/DataBase_Controller'); //allow us to ca
 var app = express();
 
 //connect to database
-mongoose.connect('mongodb+srv://admin:aUrNoNyOAHZehBjx@tictactoeplayers-lqza9.mongodb.net/test?retryWrites=true&w=majority',{useUnifiedTopology: true, useNewUrlParser: true});
+mongoose.connect('mongodb+srv://<username>:<password>@[...]/test?retryWrites=true&w=majority',{useUnifiedTopology: true, useNewUrlParser: true});
 
 //set up template engine used when rendering leaderboard.html with DB data
 app.set('view engine', 'ejs'); //embedded javascript templating https://ejs.co/
