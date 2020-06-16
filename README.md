@@ -20,7 +20,7 @@ Only one terminal is needed to run.
 
 ```
 $ git clone https://github.com/wazzabeee/CP2project
-$ cd online_exercices
+$ cd CP2project
 $ npm install
 ```
 ## Setup Database
